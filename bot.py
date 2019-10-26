@@ -36,28 +36,31 @@ class MyStreamListener(tweepy.StreamListener):
         # get the text from the tweet mentioning the bot.
         # for this bot, we won't need this since it doesn't process the tweet.
         # but if your bot does, then you'll want to use this
-        userInput = status.text
-        userId = status.author.screen_name
+
 
         # after processing the input, you can build your output
         # into this variable. again, since we're just reply "No.",
         # we'll just set it as that.
         try:
-            handler = inputHandler(userInput, userId)
-            response = handler.recordAndResponse()
+            userInput = status.text
+            userId = status.author.screen_name
+            if userId != 'FakeInterviewGM':
+                handler = inputHandler(userInput, userId)
+                response = handler.recordAndResponse()
 
+                talkTo = '@'+userId+' '
+                # respond to the tweet
+                api.update_status(
+                    status=talkTo+response,
+                    in_reply_to_status_id=status.id
+                )
 
-            talkTo = '@'+userId+' '
-            # respond to the tweet
-            api.update_status(
-                status=talkTo+response,
-                in_reply_to_status_id=status.id
-            )
-
-            print('[{}] Responded to @{}'.format(
-                datetime.now().strftime("%H:%M:%S %Y-%m-%d"),
-                status.author.screen_name
-            ))
+                print('[{}] Responded to @{}'.format(
+                    datetime.now().strftime("%H:%M:%S %Y-%m-%d"),
+                    status.author.screen_name
+                ))
+            else:
+                print('Bot supposed to not to talk himself. It will be going to be infinite loop')
         except Exception:
             print("wasn't able to parse talkTo or talkTo+response")
 
