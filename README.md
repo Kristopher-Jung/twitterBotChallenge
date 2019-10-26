@@ -29,6 +29,16 @@ Submission repository for twitterBotChallenge by CSClub&GM
 
 <h1> HowTo </h1>
 
+<ol> 
+  <li> tag @FakeInterviewGM and say anything to initialize </li>
+  <li> tag @FakeInterviewGM to respond to the question and receive a new question </li>
+  <li> Bot cannot talk to Bot itself. This will cause infinite loop so I blocked it </li>
+</ol> 
+
+
+
+
+
 <img src="./images/1.png"></img>
 
 <p>
