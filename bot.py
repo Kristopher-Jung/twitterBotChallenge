@@ -46,9 +46,11 @@ class MyStreamListener(tweepy.StreamListener):
         handler = inputHandler(userInput, userId)
         response = handler.recordAndResponse()
 
+
+        talkTo = '@'+userId+' '
         # respond to the tweet
         api.update_status(
-            status=response,
+            status=talkTo+response,
             in_reply_to_status_id=status.id
         )
 
