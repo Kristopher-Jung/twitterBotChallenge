@@ -42,22 +42,24 @@ class MyStreamListener(tweepy.StreamListener):
         # after processing the input, you can build your output
         # into this variable. again, since we're just reply "No.",
         # we'll just set it as that.
+        try:
+            handler = inputHandler(userInput, userId)
+            response = handler.recordAndResponse()
 
-        handler = inputHandler(userInput, userId)
-        response = handler.recordAndResponse()
 
+            talkTo = '@'+userId+' '
+            # respond to the tweet
+            api.update_status(
+                status=talkTo+response,
+                in_reply_to_status_id=status.id
+            )
 
-        talkTo = '@'+userId+' '
-        # respond to the tweet
-        api.update_status(
-            status=talkTo+response,
-            in_reply_to_status_id=status.id
-        )
-
-        print('[{}] Responded to @{}'.format(
-            datetime.now().strftime("%H:%M:%S %Y-%m-%d"),
-            status.author.screen_name
-        ))
+            print('[{}] Responded to @{}'.format(
+                datetime.now().strftime("%H:%M:%S %Y-%m-%d"),
+                status.author.screen_name
+            ))
+        except Exception:
+            print("wasn't able to parse talkTo or talkTo+response")
 
 
 # create a stream to receive tweets

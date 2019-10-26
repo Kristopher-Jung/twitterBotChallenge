@@ -70,7 +70,7 @@ class inputHandler:
                     conn.commit()
 
                     #generating bot's response.
-                    response = "==INITIATING GM'S TWITTER INTERVIEW!==\nWelcome {} !\nThis interview is consists of 6 questions.\nYour answers will be recorded CONFIDENTIALLY.\nANSWER THE QUESTION WITH @TAG:\n{}).{}".format(self.userId, self.q_id, curr_q)
+                    response = "INITIATING GM'S TWITTER INTERVIEW!\nWelcome {} !\nThis interview is consists of 6 Qs.\nYour answers will be recorded.\nANSWER THE QUESTIONs WITH @FakeInterviewGM:\n{}).{}".format(self.userId, self.q_id, curr_q)
 
                     #for debugging purpose.
                     print(response)
