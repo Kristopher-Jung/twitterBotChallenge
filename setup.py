@@ -1,5 +1,15 @@
 import os
 import psycopg2
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
+chatbot = ChatBot('Ron Obvious')
+
+# Create a new trainer for the chatbot
+trainer = ChatterBotCorpusTrainer(chatbot)
+
+# Train the chatbot based on the english corpus
+trainer.train("chatterbot.corpus.english")
 
 if os.path.isfile('./secret.py'):
     from secret import consumer_key, consumer_secret, access_token, access_secret, handle

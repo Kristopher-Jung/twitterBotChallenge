@@ -122,8 +122,11 @@ class inputHandler:
                         cursor.execute(insert_query)
                         conn.commit()
 
+                        aiUserInput = self.userInput.split('@' + self.userId)[-1].strip()
+                        aiResponse = chatbot.get_response(aiUserInput)
+
                         #generate response based on the information gathered.
-                        response = "THANKS!\nYour answer for Question {} has been recorded!\nNOW, ANSWER THE FOLLOWING QUESTION:\n{}).{}".format(self.q_id, new_q_id, next_question)
+                        response = "AI Response: {}\nYour answer for Question {} has been recorded!\nNOW, ANSWER THE FOLLOWING QUESTION:\n{}).{}".format(aiResponse, self.q_id, new_q_id, next_question)
                         print(response)
                         return response
 
