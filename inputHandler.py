@@ -9,7 +9,7 @@ from setup import *
 class inputHandler:
     # Constructor.
     def __init__(self, userInput, userId):
-        self.userInput = userInput
+        self.userInput = userInput.replace("'", "")
         self.userId = userId
         self.profile = None
         self.q_id = None
